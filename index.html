@@ -1,0 +1,3331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VELORA — Where Moments Become Memories</title>
+
+<!-- Favicon: Custom VELORA SVG mark -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23131617'/%3E%3Cpath d='M22 27L50 76L78 27H65L50 54L35 27H22Z' fill='%23D5B77A'/%3E%3C/svg%3E">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+:root {
+    --ink: #131617;
+    --ivory: #f5f1e8;
+    --gold: #d5b77a;
+
+    --text: #f5f1e8;
+    --dark-text: #131617;
+
+    --container: 1240px;
+    --radius: 24px;
+    --transition: 0.4s cubic-bezier(.2,.7,.2,1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--ivory);
+    color: var(--dark-text);
+    font-family: "DM Sans", sans-serif;
+    overflow-x: hidden;
+}
+
+body.dark-mode {
+    background: var(--ink);
+    color: var(--ivory);
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(var(--container), calc(100% - 48px));
+    margin: auto;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    font-size: 15px;
+}
+
+.logo-mark {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+}
+
+.logo-mark svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1180px, calc(100% - 32px));
+    z-index: 1000;
+
+    border: 1px solid rgba(245,241,232,.18);
+    background: rgba(19,22,23,.35);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-radius: 100px;
+    transition: var(--transition);
+}
+
+.site-header.scrolled {
+    background: rgba(19,22,23,.88);
+    box-shadow: 0 15px 50px rgba(0,0,0,.16);
+}
+
+.header-inner {
+    min-height: 72px;
+    padding: 0 14px 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-brand {
+    color: var(--ivory);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav a {
+    position: relative;
+    color: rgba(245,241,232,.82);
+    font-size: 13px;
+    font-weight: 500;
+    transition: .3s ease;
+}
+
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: .3s ease;
+}
+
+.nav a:hover {
+    color: var(--ivory);
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.book-btn {
+    border: 0;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 13px 20px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.book-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(213,183,122,.25);
+}
+
+.menu-toggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(245,241,232,.2);
+    background: transparent;
+    color: var(--ivory);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle svg {
+    width: 20px;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    background: rgba(19,22,23,.98);
+    transform: translateY(-110%);
+    transition: .6s cubic-bezier(.77,0,.18,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-menu.active {
+    transform: translateY(0);
+}
+
+.mobile-menu-inner {
+    width: min(500px, calc(100% - 48px));
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mobile-nav a {
+    color: var(--ivory);
+    font-family: "Playfair Display", serif;
+    font-size: clamp(34px, 8vw, 54px);
+    transition: .3s ease;
+}
+
+.mobile-nav a:hover {
+    color: var(--gold);
+    padding-left: 10px;
+}
+
+.mobile-menu-bottom {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(245,241,232,.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.theme-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ivory);
+    font-size: 13px;
+}
+
+.theme-toggle {
+    width: 48px;
+    height: 28px;
+    border: 1px solid rgba(245,241,232,.25);
+    border-radius: 100px;
+    background: transparent;
+    padding: 3px;
+}
+
+.theme-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: block;
+    transition: .3s ease;
+}
+
+body.dark-mode .theme-dot {
+    transform: translateX(20px);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100svh;
+    position: relative;
+    color: var(--ivory);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+        linear-gradient(90deg, rgba(19,22,23,.85), rgba(19,22,23,.38)),
+        url("https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=2200&q=90")
+        center/cover;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 75% 35%, rgba(213,183,122,.18), transparent 28%),
+        linear-gradient(to top, rgba(19,22,23,.8), transparent 50%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 80px;
+    max-width: 850px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 22px;
+}
+
+.eyebrow::before {
+    content: "";
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+}
+
+.hero h1 {
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+    font-size: clamp(58px, 8vw, 112px);
+    line-height: .92;
+    letter-spacing: -.055em;
+    max-width: 900px;
+}
+
+.hero-description {
+    max-width: 570px;
+    margin-top: 28px;
+    color: rgba(245,241,232,.78);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    min-height: 52px;
+    padding: 0 22px;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+}
+
+.btn-secondary {
+    color: var(--ivory);
+    border-color: rgba(245,241,232,.28);
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(10px);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn svg {
+    width: 15px;
+    transition: .3s ease;
+}
+
+.btn:hover svg {
+    transform: translateX(4px);
+}
+
+.hero-orbit {
+    position: absolute;
+    right: 8%;
+    top: 31%;
+    width: 230px;
+    height: 230px;
+    border: 1px solid rgba(213,183,122,.25);
+    border-radius: 50%;
+    animation: orbit 14s linear infinite;
+}
+
+.hero-orbit::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: var(--gold);
+    border-radius: 50%;
+    top: 15px;
+    left: 50%;
+    box-shadow: 0 0 25px var(--gold);
+}
+
+@keyframes orbit {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: rgba(245,241,232,.7);
+}
+
+.scroll-line {
+    width: 55px;
+    height: 1px;
+    background: rgba(245,241,232,.35);
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 100%;
+    background: var(--gold);
+    animation: scrollLine 2s ease infinite;
+}
+
+@keyframes scrollLine {
+    0% { transform: translateX(-35px); }
+    100% { transform: translateX(55px); }
+}
+
+/* =========================
+   GLOBAL SECTIONS
+========================= */
+
+section {
+    padding: 120px 0;
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+    margin-bottom: 55px;
+}
+
+.section-label {
+    color: var(--gold);
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    margin-bottom: 14px;
+}
+
+.section-title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(42px, 5vw, 70px);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -.045em;
+}
+
+.section-description {
+    max-width: 390px;
+    color: rgba(19,22,23,.62);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.dark-section .section-description {
+    color: rgba(245,241,232,.62);
+}
+
+/* =========================
+   EVENTS
+========================= */
+
+.events-section {
+    background: var(--ivory);
+}
+
+.filter-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.filter-btn {
+    border: 1px solid rgba(19,22,23,.15);
+    background: transparent;
+    color: var(--dark-text);
+    padding: 10px 17px;
+    border-radius: 100px;
+    font-size: 11px;
+    transition: .3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--ink);
+    color: var(--ivory);
+    border-color: var(--ink);
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 18px;
+}
+
+.event-card {
+    position: relative;
+    min-height: 480px;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--ink);
+    color: var(--ivory);
+    cursor: pointer;
+    transition: .5s cubic-bezier(.2,.7,.2,1);
+}
+
+.event-card:nth-child(1) {
+    grid-column: span 7;
+}
+
+.event-card:nth-child(2) {
+    grid-column: span 5;
+}
+
+.event-card:nth-child(3) {
+    grid-column: span 4;
+}
+
+.event-card:nth-child(4) {
+    grid-column: span 4;
+}
+
+.event-card:nth-child(5) {
+    grid-column: span 4;
+}
+
+.event-card:nth-child(6) {
+    grid-column: span 7;
+}
+
+.event-card:nth-child(7) {
+    grid-column: span 5;
+}
+
+.event-card img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    transition: transform .9s cubic-bezier(.2,.7,.2,1);
+}
+
+.event-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(19,22,23,.95), rgba(19,22,23,.05) 70%);
+    transition: .5s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(19,22,23,.18);
+}
+
+.event-card:hover img {
+    transform: scale(1.08);
+}
+
+.event-card:hover::after {
+    background: linear-gradient(to top, rgba(19,22,23,.98), rgba(19,22,23,.25));
+}
+
+.event-content {
+    position: absolute;
+    z-index: 2;
+    left: 28px;
+    right: 28px;
+    bottom: 28px;
+}
+
+.event-category {
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.event-content h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    margin: 8px 0;
+}
+
+.event-content p {
+    color: rgba(245,241,232,.7);
+    font-size: 12px;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    color: var(--ivory);
+    font-size: 11px;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: .4s ease;
+}
+
+.card-link svg {
+    width: 14px;
+}
+
+.event-card:hover .card-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.services-section {
+    background: var(--ink);
+    color: var(--ivory);
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.service-card {
+    min-height: 270px;
+    padding: 28px;
+    border: 1px solid rgba(245,241,232,.12);
+    border-radius: var(--radius);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    background: rgba(255,255,255,.025);
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(213,183,122,.16), transparent 55%);
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(213,183,122,.4);
+    box-shadow: 0 25px 60px rgba(0,0,0,.3);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-icon {
+    position: relative;
+    z-index: 2;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(213,183,122,.3);
+    border-radius: 50%;
+    color: var(--gold);
+    transition: .5s cubic-bezier(.2,.7,.2,1);
+}
+
+.service-icon svg {
+    width: 20px;
+}
+
+.service-card:hover .service-icon {
+    transform: translateY(-5px) rotate(-8deg);
+    background: var(--gold);
+    color: var(--ink);
+}
+
+.service-card h3 {
+    position: relative;
+    z-index: 2;
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    margin-top: 60px;
+}
+
+.service-card p {
+    position: relative;
+    z-index: 2;
+    margin-top: 10px;
+    color: rgba(245,241,232,.6);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* =========================
+   FEATURED
+========================= */
+
+.featured-section {
+    background: var(--ivory);
+}
+
+.featured-item {
+    display: grid;
+    grid-template-columns: 1.4fr .8fr;
+    min-height: 600px;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    background: var(--ink);
+    color: var(--ivory);
+}
+
+.featured-item.reverse {
+    grid-template-columns: .8fr 1.4fr;
+}
+
+.featured-image {
+    overflow: hidden;
+}
+
+.featured-image img {
+    height: 100%;
+    transition: 1s cubic-bezier(.2,.7,.2,1);
+}
+
+.featured-item:hover .featured-image img {
+    transform: scale(1.06);
+}
+
+.featured-info {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.featured-date {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+.featured-info h3 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(38px, 4vw, 62px);
+    line-height: 1;
+    margin: 18px 0;
+}
+
+.featured-info p {
+    color: rgba(245,241,232,.65);
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 430px;
+}
+
+.featured-meta {
+    display: flex;
+    gap: 18px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(245,241,232,.75);
+    font-size: 11px;
+}
+
+.meta svg {
+    width: 14px;
+    color: var(--gold);
+}
+
+.featured-info .btn {
+    margin-top: 32px;
+    width: fit-content;
+}
+
+/* =========================
+   PROCESS
+========================= */
+
+.process-section {
+    background: #e9e3d6;
+}
+
+.process-line {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+}
+
+.process-line::before {
+    content: "";
+    position: absolute;
+    top: 38px;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: rgba(19,22,23,.18);
+}
+
+.process-step {
+    position: relative;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.process-icon {
+    width: 76px;
+    height: 76px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+    background: var(--ivory);
+    border: 1px solid rgba(19,22,23,.18);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.process-step:hover .process-icon {
+    background: var(--ink);
+    color: var(--gold);
+    transform: translateY(-8px);
+}
+
+.process-icon svg {
+    width: 24px;
+}
+
+.process-step h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    margin-top: 25px;
+}
+
+.process-step p {
+    margin: 10px auto 0;
+    color: rgba(19,22,23,.6);
+    font-size: 12px;
+    line-height: 1.7;
+    max-width: 220px;
+}
+
+/* =========================
+   VENUES
+========================= */
+
+.venues-section {
+    background: var(--ivory);
+}
+
+.venue-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr .8fr;
+    grid-auto-rows: 280px;
+    gap: 16px;
+}
+
+.venue-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    color: var(--ivory);
+    background: var(--ink);
+}
+
+.venue-card:nth-child(1) {
+    grid-row: span 2;
+}
+
+.venue-card:nth-child(4) {
+    grid-column: span 2;
+}
+
+.venue-card img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    transition: .9s cubic-bezier(.2,.7,.2,1);
+}
+
+.venue-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(19,22,23,.92), transparent 70%);
+}
+
+.venue-card:hover img {
+    transform: scale(1.09);
+}
+
+.venue-card:hover {
+    box-shadow: 0 25px 55px rgba(19,22,23,.2);
+}
+
+.venue-info {
+    position: absolute;
+    z-index: 2;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+}
+
+.venue-info h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 27px;
+}
+
+.venue-location {
+    color: var(--gold);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    margin-top: 5px;
+}
+
+.venue-details {
+    display: flex;
+    gap: 14px;
+    margin-top: 12px;
+    color: rgba(245,241,232,.72);
+    font-size: 10px;
+}
+
+.venue-details span {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.venue-details svg {
+    width: 13px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats-section {
+    padding: 90px 0;
+    background: var(--gold);
+    color: var(--ink);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat {
+    text-align: center;
+    padding: 20px;
+}
+
+.stat-number {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(50px, 6vw, 80px);
+    line-height: 1;
+}
+
+.stat-label {
+    margin-top: 12px;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+/* =========================
+   STORIES
+========================= */
+
+.stories-section {
+    background: var(--ink);
+    color: var(--ivory);
+    overflow: hidden;
+}
+
+.story-track {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    scrollbar-width: none;
+    cursor: grab;
+}
+
+.story-track::-webkit-scrollbar {
+    display: none;
+}
+
+.story-card {
+    min-width: 430px;
+    width: 430px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(245,241,232,.1);
+    background: rgba(255,255,255,.03);
+    transition: var(--transition);
+}
+
+.story-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(213,183,122,.4);
+}
+
+.story-image {
+    height: 300px;
+    overflow: hidden;
+}
+
+.story-image img {
+    height: 100%;
+    transition: .8s ease;
+}
+
+.story-card:hover .story-image img {
+    transform: scale(1.07);
+}
+
+.story-content {
+    padding: 25px;
+}
+
+.story-type {
+    color: var(--gold);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+}
+
+.story-content h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    margin: 10px 0;
+}
+
+.story-content blockquote {
+    color: rgba(245,241,232,.65);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.story-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(245,241,232,.1);
+    font-size: 10px;
+    color: rgba(245,241,232,.55);
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery-section {
+    background: var(--ivory);
+}
+
+.gallery-grid {
+    columns: 4 220px;
+    column-gap: 14px;
+}
+
+.gallery-item {
+    break-inside: avoid;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    transition: .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: end;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(19,22,23,.75));
+    color: var(--ivory);
+    opacity: 0;
+    transition: .4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.07);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay span {
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.final-cta {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    color: var(--ivory);
+    background:
+        linear-gradient(90deg, rgba(19,22,23,.9), rgba(19,22,23,.3)),
+        url("https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=2200&q=90")
+        center/cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.final-cta::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    right: -250px;
+    top: -200px;
+    border: 1px solid rgba(213,183,122,.2);
+    border-radius: 50%;
+}
+
+.cta-content {
+    position: relative;
+    max-width: 780px;
+}
+
+.cta-content h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(55px, 7vw, 100px);
+    line-height: .95;
+    font-weight: 500;
+    letter-spacing: -.05em;
+}
+
+.cta-content p {
+    max-width: 510px;
+    margin-top: 25px;
+    color: rgba(245,241,232,.7);
+    line-height: 1.8;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background: var(--ink);
+    color: var(--ivory);
+    padding: 85px 0 25px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.4fr;
+    gap: 50px;
+    padding-bottom: 70px;
+}
+
+.footer-brand p {
+    margin-top: 20px;
+    max-width: 280px;
+    color: rgba(245,241,232,.55);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.footer-title {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    font-size: 9px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    font-size: 12px;
+    color: rgba(245,241,232,.68);
+    transition: .3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+    transform: translateX(4px);
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    color: rgba(245,241,232,.65);
+    font-size: 12px;
+}
+
+.contact-item svg {
+    width: 15px;
+    color: var(--gold);
+    flex: 0 0 15px;
+}
+
+.newsletter {
+    display: flex;
+    border-bottom: 1px solid rgba(245,241,232,.2);
+}
+
+.newsletter input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--ivory);
+    padding: 13px 0;
+    font-size: 12px;
+}
+
+.newsletter input::placeholder {
+    color: rgba(245,241,232,.35);
+}
+
+.newsletter button {
+    border: 0;
+    background: transparent;
+    color: var(--gold);
+}
+
+.socials {
+    display: flex;
+    gap: 9px;
+    margin-top: 25px;
+}
+
+.social {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(245,241,232,.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s ease;
+}
+
+.social svg {
+    width: 15px;
+}
+
+.social:hover {
+    background: var(--gold);
+    color: var(--ink);
+    transform: translateY(-4px);
+}
+
+.footer-bottom {
+    padding-top: 25px;
+    border-top: 1px solid rgba(245,241,232,.1);
+    display: flex;
+    justify-content: space-between;
+    color: rgba(245,241,232,.35);
+    font-size: 10px;
+}
+
+/* =========================
+   LIGHTBOX
+========================= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(19,22,23,.96);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transition: .4s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 1000px;
+    max-height: 85vh;
+    width: auto;
+    border-radius: 15px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(245,241,232,.25);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ivory);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-close svg {
+    width: 20px;
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark-mode .events-section,
+body.dark-mode .featured-section,
+body.dark-mode .venues-section,
+body.dark-mode .gallery-section {
+    background: var(--ink);
+    color: var(--ivory);
+}
+
+body.dark-mode .section-description {
+    color: rgba(245,241,232,.62);
+}
+
+body.dark-mode .filter-btn {
+    color: var(--ivory);
+    border-color: rgba(245,241,232,.15);
+}
+
+body.dark-mode .filter-btn:hover,
+body.dark-mode .filter-btn.active {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+}
+
+body.dark-mode .process-section {
+    background: #1b1f20;
+    color: var(--ivory);
+}
+
+body.dark-mode .process-line::before {
+    background: rgba(245,241,232,.15);
+}
+
+body.dark-mode .process-icon {
+    background: var(--ink);
+    border-color: rgba(245,241,232,.15);
+}
+
+body.dark-mode .process-step p {
+    color: rgba(245,241,232,.55);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .header-actions .book-btn {
+        display: none;
+    }
+
+    .event-card:nth-child(n) {
+        grid-column: span 6;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .venue-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .venue-card:nth-child(1) {
+        grid-row: span 1;
+    }
+
+    .venue-card:nth-child(4) {
+        grid-column: span 1;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    :root {
+        --radius: 20px;
+    }
+
+    .container {
+        width: min(100% - 30px, var(--container));
+    }
+
+    section {
+        padding: 85px 0;
+    }
+
+    .site-header {
+        top: 10px;
+        width: calc(100% - 20px);
+    }
+
+    .header-inner {
+        min-height: 64px;
+        padding-left: 16px;
+    }
+
+    .hero {
+        min-height: 780px;
+    }
+
+    .hero-content {
+        padding-top: 90px;
+    }
+
+    .hero h1 {
+        font-size: clamp(52px, 15vw, 78px);
+    }
+
+    .hero-orbit {
+        width: 160px;
+        height: 160px;
+        right: -50px;
+        top: 23%;
+    }
+
+    .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 35px;
+    }
+
+    .section-description {
+        max-width: 600px;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .event-card:nth-child(n) {
+        grid-column: span 1;
+        min-height: 420px;
+    }
+
+    .featured-item,
+    .featured-item.reverse {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .featured-image {
+        min-height: 380px;
+    }
+
+    .featured-info {
+        padding: 40px 28px;
+    }
+
+    .process-line {
+        grid-template-columns: 1fr 1fr;
+        gap: 45px 10px;
+    }
+
+    .process-line::before {
+        display: none;
+    }
+
+    .venue-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 300px;
+    }
+
+    .venue-card:nth-child(1),
+    .venue-card:nth-child(4) {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .story-card {
+        min-width: min(88vw, 430px);
+        width: min(88vw, 430px);
+    }
+
+    .gallery-grid {
+        columns: 2 140px;
+    }
+
+    .final-cta {
+        min-height: 580px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 45px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .brand {
+        font-size: 13px;
+    }
+
+    .logo-mark {
+        width: 28px;
+        height: 28px;
+        flex-basis: 28px;
+    }
+
+    .hero {
+        min-height: 720px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .event-card:nth-child(n) {
+        min-height: 380px;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        min-height: 230px;
+    }
+
+    .process-line {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stat-number {
+        font-size: 48px;
+    }
+
+    .gallery-grid {
+        columns: 2 120px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="site-header" id="header">
+
+    <div class="header-inner">
+
+        <a href="#home" class="brand header-brand">
+
+            <!-- LOGO BEFORE BRAND NAME -->
+            <span class="logo-mark">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <rect width="100" height="100" rx="25" fill="#131617"/>
+                    <path d="M22 27L50 76L78 27H65L50 54L35 27H22Z"
+                          fill="#D5B77A"/>
+                </svg>
+            </span>
+
+            <span>VELORA</span>
+
+        </a>
+
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#events">Events</a>
+            <a href="#services">Services</a>
+            <a href="#venues">Venues</a>
+            <a href="#stories">Stories</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+
+            <a href="#contact" class="book-btn">
+                Book Event
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+                <i data-lucide="menu"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+    <div class="mobile-menu-inner">
+
+        <nav class="mobile-nav">
+
+            <a href="#home">Home</a>
+            <a href="#events">Events</a>
+            <a href="#services">Services</a>
+            <a href="#venues">Venues</a>
+            <a href="#stories">Stories</a>
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+        <div class="mobile-menu-bottom">
+
+            <div class="theme-control">
+                <i data-lucide="sun"></i>
+                <span>Theme</span>
+
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="theme-dot"></span>
+                </button>
+            </div>
+
+            <a href="#contact" class="book-btn mobile-book">
+                Book Event
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="hero-content reveal">
+
+            <div class="eyebrow">
+                Exceptional Events
+            </div>
+
+            <h1>
+                Where Moments Become Memories.
+            </h1>
+
+            <p class="hero-description">
+                We design, orchestrate and elevate extraordinary experiences
+                where thoughtful details, remarkable spaces and unforgettable
+                moments come together.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#events" class="btn btn-primary">
+                    Explore Events
+                    <i data-lucide="arrow-up-right"></i>
+                </a>
+
+                <a href="#contact" class="btn btn-secondary">
+                    Plan Your Event
+                    <i data-lucide="arrow-up-right"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="hero-orbit"></div>
+
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <span class="scroll-line"></span>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EVENTS
+========================= -->
+
+<section class="events-section" id="events">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div>
+            <div class="section-label">01 / Discovery</div>
+            <h2 class="section-title">
+                Events Designed<br>
+                Around You.
+            </h2>
+        </div>
+
+        <p class="section-description">
+            From intimate celebrations to large-scale productions,
+            every experience is carefully designed around your vision,
+            audience and story.
+        </p>
+
+    </div>
+
+    <div class="filter-bar reveal">
+
+        <button class="filter-btn active" data-filter="all">
+            All
+        </button>
+
+        <button class="filter-btn" data-filter="corporate">
+            Corporate
+        </button>
+
+        <button class="filter-btn" data-filter="wedding">
+            Wedding
+        </button>
+
+        <button class="filter-btn" data-filter="concert">
+            Concert
+        </button>
+
+        <button class="filter-btn" data-filter="conference">
+            Conference
+        </button>
+
+        <button class="filter-btn" data-filter="exhibition">
+            Exhibition
+        </button>
+
+        <button class="filter-btn" data-filter="private">
+            Private
+        </button>
+
+    </div>
+
+    <div class="event-grid">
+
+        <article class="event-card reveal" data-category="wedding">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85" alt="Luxury wedding">
+            <div class="event-content">
+                <div class="event-category">Wedding</div>
+                <h3>Golden Hour</h3>
+                <p>A sophisticated celebration crafted around intimacy, atmosphere and timeless details.</p>
+                <span class="card-link">View Event <i data-lucide="arrow-up-right"></i></span>
+            </div>
+        </article>
+
+        <article class="event-card reveal" data-category="corporate">
+            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1000&q=85" alt="Corporate event">
+            <div class="event-content">
+                <div class="event-category">Corporate</div>
+                <h3>Elevate</h3>
+                <p>Strategic corporate experiences that transform brands and bring teams together.</p>
+                <span class="card-link">View Event <i data-lucide="arrow-up-right"></i></span>
+            </div>
+        </article>
+
+        <article class="event-card reveal" data-category="concert">
+            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=85" alt="Concert">
+            <div class="event-content">
+                <div class="event-category">Concert</div>
+                <h3>Afterlight</h3>
+                <p>Immersive live productions built for unforgettable nights.</p>
+                <span class="card-link">View Event <i data-lucide="arrow-up-right"></i></span>
+            </div>
+        </article>
+
+        <article class="event-card reveal" data-category="conference">
+            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1000&q=85" alt="Conference">
+            <div class="event-content">
+                <div class="event-category">Conference</div>
+                <h3>Future Forum</h3>
+                <p>Thought leadership experiences engineered for meaningful conversations.</p>
+                <span class="card-link">View Event <i data-lucide="arrow-up-right"></i></span>
+            </div>
+        </article>
+
+        <article class="event-card reveal" data-category="exhibition">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=85" alt="Exhibition">
+            <div class="event-content">
+                <div class="event-category">Exhibition</div>
+                <h3>Form & Space</h3>
+                <p>Curated environments designed to make ideas impossible to ignore.</p>
+                <span class="card-link">View Event <i data-lucide="arrow-up-right"></i></span>
+            </div>
+        </article>
+
+        <article class="event-card reveal" data-category="private">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=85" alt="Private celebration">
+            <div class="event-content">
+                <div class="event-category">Private</div>
+                <h3>Velvet Night</h3>
+                <p>A private celebration where design, hospitality and atmosphere become one.</p>
+                <span class="card-link">View Event <i data-lucide="arrow-up-right"></i></span>
+            </div>
+        </article>
+
+        <article class="event-card reveal" data-category="corporate">
+            <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=1200&q=85" alt="Corporate gathering">
+            <div class="event-content">
+                <div class="event-category">Corporate</div>
+                <h3>Summit 28</h3>
+                <p>An immersive executive gathering built around connection and innovation.</p>
+                <span class="card-link">View Event <i data-lucide="arrow-up-right"></i></span>
+            </div>
+        </article>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section class="services-section dark-section" id="services">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div>
+            <div class="section-label">02 / Services</div>
+            <h2 class="section-title">
+                Everything<br>
+                Behind the Moment.
+            </h2>
+        </div>
+
+        <p class="section-description">
+            A complete event ecosystem covering strategy, production,
+            hospitality and technology from the first idea to the final guest.
+        </p>
+
+    </div>
+
+    <div class="service-grid">
+
+        <article class="service-card reveal">
+            <div class="service-icon">
+                <i data-lucide="calendar-days"></i>
+            </div>
+            <h3>Event Planning</h3>
+            <p>From initial concept to detailed execution, every moving part is strategically coordinated.</p>
+        </article>
+
+        <article class="service-card reveal">
+            <div class="service-icon">
+                <i data-lucide="building-2"></i>
+            </div>
+            <h3>Venue Management</h3>
+            <p>Exceptional spaces selected, styled and managed around the purpose of your event.</p>
+        </article>
+
+        <article class="service-card reveal">
+            <div class="service-icon">
+                <i data-lucide="users"></i>
+            </div>
+            <h3>Guest Management</h3>
+            <p>Seamless guest journeys from invitation and registration to arrival and departure.</p>
+        </article>
+
+        <article class="service-card reveal">
+            <div class="service-icon">
+                <i data-lucide="utensils"></i>
+            </div>
+            <h3>Catering</h3>
+            <p>Curated menus and hospitality experiences that complement the identity of your occasion.</p>
+        </article>
+
+        <article class="service-card reveal">
+            <div class="service-icon">
+                <i data-lucide="flower-2"></i>
+            </div>
+            <h3>Decoration</h3>
+            <p>Atmospheric styling, floral design, lighting and visual details that define the environment.</p>
+        </article>
+
+        <article class="service-card reveal">
+            <div class="service-icon">
+                <i data-lucide="music-2"></i>
+            </div>
+            <h3>Entertainment</h3>
+            <p>Performances and programming curated to create energy, emotion and memorable moments.</p>
+        </article>
+
+        <article class="service-card reveal">
+            <div class="service-icon">
+                <i data-lucide="cpu"></i>
+            </div>
+            <h3>Event Technology</h3>
+            <p>Modern event technology, immersive experiences and digital systems for connected audiences.</p>
+        </article>
+
+        <article class="service-card reveal">
+            <div class="service-icon">
+                <i data-lucide="sparkles"></i>
+            </div>
+            <h3>Experience Design</h3>
+            <p>Strategic creative direction that turns ordinary event spaces into extraordinary experiences.</p>
+        </article>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FEATURED EVENTS
+========================= -->
+
+<section class="featured-section">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div>
+            <div class="section-label">03 / Featured</div>
+            <h2 class="section-title">
+                The Events<br>
+                We're Creating.
+            </h2>
+        </div>
+
+    </div>
+
+    <article class="featured-item reveal">
+
+        <div class="featured-image">
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1500&q=90" alt="Luxury conference">
+        </div>
+
+        <div class="featured-info">
+
+            <div class="featured-date">
+                October 18 — 2026
+            </div>
+
+            <h3>Future<br>Summit</h3>
+
+            <p>
+                A two-day gathering of innovators, founders and creative
+                leaders exploring the ideas shaping tomorrow.
+            </p>
+
+            <div class="featured-meta">
+
+                <div class="meta">
+                    <i data-lucide="map-pin"></i>
+                    Singapore
+                </div>
+
+                <div class="meta">
+                    <i data-lucide="users"></i>
+                    1,200 Guests
+                </div>
+
+            </div>
+
+            <a href="#contact" class="btn btn-primary">
+                View Event
+                <i data-lucide="arrow-up-right"></i>
+            </a>
+
+        </div>
+
+    </article>
+
+    <article class="featured-item reverse reveal">
+
+        <div class="featured-info">
+
+            <div class="featured-date">
+                November 07 — 2026
+            </div>
+
+            <h3>Midnight<br>Garden</h3>
+
+            <p>
+                An intimate private celebration blending architectural
+                lighting, botanical styling and extraordinary hospitality.
+            </p>
+
+            <div class="featured-meta">
+
+                <div class="meta">
+                    <i data-lucide="map-pin"></i>
+                    London
+                </div>
+
+                <div class="meta">
+                    <i data-lucide="users"></i>
+                    280 Guests
+                </div>
+
+            </div>
+
+            <a href="#contact" class="btn btn-primary">
+                View Event
+                <i data-lucide="arrow-up-right"></i>
+            </a>
+
+        </div>
+
+        <div class="featured-image">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1500&q=90" alt="Night event">
+        </div>
+
+    </article>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PROCESS
+========================= -->
+
+<section class="process-section">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div>
+            <div class="section-label">04 / Experience</div>
+            <h2 class="section-title">
+                From First Idea<br>
+                To Final Applause.
+            </h2>
+        </div>
+
+    </div>
+
+    <div class="process-line">
+
+        <div class="process-step reveal">
+
+            <div class="process-icon">
+                <i data-lucide="search"></i>
+            </div>
+
+            <h3>Discover</h3>
+
+            <p>
+                We understand your vision, audience, objectives and the story you want to tell.
+            </p>
+
+        </div>
+
+        <div class="process-step reveal">
+
+            <div class="process-icon">
+                <i data-lucide="map"></i>
+            </div>
+
+            <h3>Plan</h3>
+
+            <p>
+                We build the strategy, timeline, production plan and experience architecture.
+            </p>
+
+        </div>
+
+        <div class="process-step reveal">
+
+            <div class="process-icon">
+                <i data-lucide="wand-sparkles"></i>
+            </div>
+
+            <h3>Create</h3>
+
+            <p>
+                Our teams bring every creative, technical and operational detail to life.
+            </p>
+
+        </div>
+
+        <div class="process-step reveal">
+
+            <div class="process-icon">
+                <i data-lucide="party-popper"></i>
+            </div>
+
+            <h3>Celebrate</h3>
+
+            <p>
+                Guests arrive, experiences unfold and your vision becomes a lasting memory.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     VENUES
+========================= -->
+
+<section class="venues-section" id="venues">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div>
+            <div class="section-label">05 / Venues</div>
+            <h2 class="section-title">
+                Spaces With<br>
+                A Story.
+            </h2>
+        </div>
+
+        <p class="section-description">
+            From architectural landmarks to intimate hidden spaces,
+            discover environments designed to make every occasion extraordinary.
+        </p>
+
+    </div>
+
+    <div class="venue-grid">
+
+        <article class="venue-card reveal">
+
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85" alt="Ballroom">
+
+            <div class="venue-info">
+                <h3>The Grand Ballroom</h3>
+                <div class="venue-location">Paris, France</div>
+
+                <div class="venue-details">
+                    <span><i data-lucide="users"></i> 900</span>
+                    <span><i data-lucide="building"></i> Ballroom</span>
+                </div>
+            </div>
+
+        </article>
+
+        <article class="venue-card reveal">
+
+            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1000&q=85" alt="Outdoor venue">
+
+            <div class="venue-info">
+                <h3>Olive Estate</h3>
+                <div class="venue-location">Tuscany, Italy</div>
+
+                <div class="venue-details">
+                    <span><i data-lucide="users"></i> 350</span>
+                    <span><i data-lucide="trees"></i> Outdoor</span>
+                </div>
+            </div>
+
+        </article>
+
+        <article class="venue-card reveal">
+
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=85" alt="Conference hall">
+
+            <div class="venue-info">
+                <h3>Forum Hall</h3>
+                <div class="venue-location">Singapore</div>
+
+                <div class="venue-details">
+                    <span><i data-lucide="users"></i> 1,200</span>
+                    <span><i data-lucide="presentation"></i> Conference</span>
+                </div>
+            </div>
+
+        </article>
+
+        <article class="venue-card reveal">
+
+            <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1000&q=85" alt="Rooftop">
+
+            <div class="venue-info">
+                <h3>Skyline Rooftop</h3>
+                <div class="venue-location">New York, USA</div>
+
+                <div class="venue-details">
+                    <span><i data-lucide="users"></i> 450</span>
+                    <span><i data-lucide="building-2"></i> Rooftop</span>
+                </div>
+            </div>
+
+        </article>
+
+        <article class="venue-card reveal">
+
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=85" alt="Luxury venue">
+
+            <div class="venue-info">
+                <h3>Maison Aurelia</h3>
+                <div class="venue-location">London, UK</div>
+
+                <div class="venue-details">
+                    <span><i data-lucide="users"></i> 180</span>
+                    <span><i data-lucide="gem"></i> Luxury</span>
+                </div>
+            </div>
+
+        </article>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<section class="stats-section">
+
+<div class="container">
+
+    <div class="stats-grid">
+
+        <div class="stat reveal">
+            <div class="stat-number" data-target="500">0</div>
+            <div class="stat-label">Events Delivered</div>
+        </div>
+
+        <div class="stat reveal">
+            <div class="stat-number" data-target="120">0</div>
+            <div class="stat-label">Guests Hosted</div>
+        </div>
+
+        <div class="stat reveal">
+            <div class="stat-number" data-target="85">0</div>
+            <div class="stat-label">Premium Venues</div>
+        </div>
+
+        <div class="stat reveal">
+            <div class="stat-number" data-target="98">0</div>
+            <div class="stat-label">Client Satisfaction</div>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     STORIES
+========================= -->
+
+<section class="stories-section" id="stories">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div>
+            <div class="section-label">06 / Stories</div>
+            <h2 class="section-title">
+                Moments That<br>
+                Stay With You.
+            </h2>
+        </div>
+
+        <p class="section-description">
+            Behind every event is a story. Here are a few of the moments
+            our clients continue to talk about long after the lights go down.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="story-track" id="storyTrack">
+
+    <article class="story-card">
+
+        <div class="story-image">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85" alt="Wedding story">
+        </div>
+
+        <div class="story-content">
+
+            <div class="story-type">Wedding / 2026</div>
+
+            <h3>Amelia & James</h3>
+
+            <blockquote>
+                “Every detail felt effortless. It was exactly the celebration we had imagined.”
+            </blockquote>
+
+            <div class="story-footer">
+                <span>Lake Como</span>
+                <span>June 14, 2026</span>
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <article class="story-card">
+
+        <div class="story-image">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85" alt="Concert story">
+        </div>
+
+        <div class="story-content">
+
+            <div class="story-type">Concert / 2026</div>
+
+            <h3>Afterlight Festival</h3>
+
+            <blockquote>
+                “The production was extraordinary. Our audience experienced something genuinely different.”
+            </blockquote>
+
+            <div class="story-footer">
+                <span>Berlin</span>
+                <span>July 22, 2026</span>
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <article class="story-card">
+
+        <div class="story-image">
+            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1000&q=85" alt="Conference story">
+        </div>
+
+        <div class="story-content">
+
+            <div class="story-type">Conference / 2026</div>
+
+            <h3>Future Forum</h3>
+
+            <blockquote>
+                “From the first briefing to the final keynote, the entire experience was seamless.”
+            </blockquote>
+
+            <div class="story-footer">
+                <span>Singapore</span>
+                <span>August 08, 2026</span>
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <article class="story-card">
+
+        <div class="story-image">
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1000&q=85" alt="Corporate story">
+        </div>
+
+        <div class="story-content">
+
+            <div class="story-type">Corporate / 2026</div>
+
+            <h3>Summit 28</h3>
+
+            <blockquote>
+                “VELORA understood our brand and translated it into an experience our guests loved.”
+            </blockquote>
+
+            <div class="story-footer">
+                <span>London</span>
+                <span>September 03, 2026</span>
+            </div>
+
+        </div>
+
+    </article>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section class="gallery-section">
+
+<div class="container">
+
+    <div class="section-head reveal">
+
+        <div>
+            <div class="section-label">07 / Gallery</div>
+            <h2 class="section-title">
+                Inside The<br>
+                Experience.
+            </h2>
+        </div>
+
+    </div>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=85" alt="Wedding">
+            <div class="gallery-overlay"><span>Wedding / Florence</span></div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=85" alt="Outdoor event">
+            <div class="gallery-overlay"><span>Private / Tuscany</span></div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=85" alt="Concert">
+            <div class="gallery-overlay"><span>Concert / Berlin</span></div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=85" alt="Festival">
+            <div class="gallery-overlay"><span>Festival / London</span></div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=85" alt="Conference">
+            <div class="gallery-overlay"><span>Conference / Singapore</span></div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=800&q=85" alt="Rooftop event">
+            <div class="gallery-overlay"><span>Rooftop / New York</span></div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=85" alt="Celebration">
+            <div class="gallery-overlay"><span>Private / Paris</span></div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=85" alt="Event">
+            <div class="gallery-overlay"><span>Corporate / Dubai</span></div>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="final-cta" id="contact">
+
+<div class="container">
+
+    <div class="cta-content reveal">
+
+        <div class="eyebrow">
+            Let's Create Something
+        </div>
+
+        <h2>
+            Your Next Great Event Starts Here.
+        </h2>
+
+        <p>
+            Tell us what you're imagining. We'll turn the idea into
+            an experience your guests will remember.
+        </p>
+
+        <a href="mailto:hello@velora.events" class="btn btn-primary" style="margin-top:32px;">
+            Plan Your Event
+            <i data-lucide="arrow-up-right"></i>
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+<div class="container">
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+
+            <!-- LOGO BEFORE BRAND NAME -->
+            <a href="#home" class="brand">
+
+                <span class="logo-mark">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <rect width="100" height="100" rx="25" fill="#131617"/>
+                        <path d="M22 27L50 76L78 27H65L50 54L35 27H22Z"
+                              fill="#D5B77A"/>
+                    </svg>
+                </span>
+
+                <span>VELORA</span>
+
+            </a>
+
+            <p>
+                Designed for moments that matter.
+                Premium event planning, production and experience design.
+            </p>
+
+            <div class="socials">
+
+                <a href="#" class="social" aria-label="Instagram">
+                    <i data-lucide="instagram"></i>
+                </a>
+
+                <a href="#" class="social" aria-label="LinkedIn">
+                    <i data-lucide="linkedin"></i>
+                </a>
+
+                <a href="#" class="social" aria-label="Facebook">
+                    <i data-lucide="facebook"></i>
+                </a>
+
+                <a href="#" class="social" aria-label="Twitter">
+                    <i data-lucide="twitter"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">Quick Links</div>
+
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#events">Events</a>
+                <a href="#services">Services</a>
+                <a href="#venues">Venues</a>
+                <a href="#stories">Stories</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">Services</div>
+
+            <div class="footer-links">
+                <a href="#services">Event Planning</a>
+                <a href="#services">Venue Management</a>
+                <a href="#services">Guest Management</a>
+                <a href="#services">Catering</a>
+                <a href="#services">Entertainment</a>
+                <a href="#services">Event Technology</a>
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">Stay Connected</div>
+
+            <div class="footer-contact">
+
+                <div class="contact-item">
+                    <i data-lucide="mail"></i>
+                    <span>hello@velora.events</span>
+                </div>
+
+                <div class="contact-item">
+                    <i data-lucide="phone"></i>
+                    <span>+44 20 7946 0828</span>
+                </div>
+
+                <div class="contact-item">
+                    <i data-lucide="map-pin"></i>
+                    <span>London · Singapore · New York</span>
+                </div>
+
+            </div>
+
+            <div class="newsletter" style="margin-top:25px;">
+                <input type="email" placeholder="Your email address" id="newsletterEmail">
+                <button type="button" id="newsletterBtn">
+                    <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>© 2026 VELORA. All rights reserved.</span>
+
+        <span>Designed for moments that matter.</span>
+
+    </div>
+
+</div>
+
+</footer>
+
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox">
+
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery">
+        <i data-lucide="x"></i>
+    </button>
+
+    <img id="lightboxImage" src="" alt="Expanded event image">
+
+</div>
+
+
+<script>
+
+/* =========================
+   INITIALIZE ICONS
+========================= */
+
+lucide.createIcons();
+
+
+/* =========================
+   HEADER SCROLL
+========================= */
+
+const header = document.getElementById("header");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+
+}, { passive: true });
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+function closeMenu() {
+    mobileMenu.classList.remove("active");
+    document.body.classList.remove("menu-open");
+
+    menuToggle.innerHTML = '<i data-lucide="menu"></i>';
+    lucide.createIcons();
+}
+
+menuToggle.addEventListener("click", () => {
+
+    const isOpen = mobileMenu.classList.toggle("active");
+
+    document.body.classList.toggle("menu-open", isOpen);
+
+    menuToggle.innerHTML = isOpen
+        ? '<i data-lucide="x"></i>'
+        : '<i data-lucide="menu"></i>';
+
+    lucide.createIcons();
+
+});
+
+document.querySelectorAll(".mobile-nav a, .mobile-book").forEach(link => {
+
+    link.addEventListener("click", closeMenu);
+
+});
+
+document.addEventListener("keydown", e => {
+
+    if (e.key === "Escape") {
+        closeMenu();
+    }
+
+});
+
+
+/* =========================
+   THEME TOGGLE
+========================= */
+
+const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark-mode");
+
+    localStorage.setItem(
+        "velora-theme",
+        document.body.classList.contains("dark-mode")
+            ? "dark"
+            : "light"
+    );
+
+});
+
+if (localStorage.getItem("velora-theme") === "dark") {
+    document.body.classList.add("dark-mode");
+}
+
+
+/* =========================
+   EVENT FILTER
+========================= */
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+const eventCards = document.querySelectorAll(".event-card");
+
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        filterButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        const filter = button.dataset.filter;
+
+        eventCards.forEach(card => {
+
+            const category = card.dataset.category;
+
+            if (filter === "all" || category === filter) {
+
+                card.style.display = "block";
+
+                requestAnimationFrame(() => {
+                    card.style.opacity = "1";
+                    card.style.transform = "";
+                });
+
+            } else {
+
+                card.style.opacity = "0";
+                card.style.transform = "scale(.96)";
+
+                setTimeout(() => {
+                    card.style.display = "none";
+                }, 250);
+
+            }
+
+        });
+
+    });
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const revealObserver = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("visible");
+
+                revealObserver.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+    {
+        threshold: .12
+    }
+);
+
+revealElements.forEach(element =>
+    revealObserver.observe(element)
+);
+
+
+/* =========================
+   ANIMATED COUNTERS
+========================= */
+
+const counters = document.querySelectorAll(".stat-number");
+
+const counterObserver = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if (!entry.isIntersecting) return;
+
+            const counter = entry.target;
+            const target = Number(counter.dataset.target);
+
+            let current = 0;
+            const duration = 1600;
+            const startTime = performance.now();
+
+            function updateCounter(time) {
+
+                const progress = Math.min(
+                    (time - startTime) / duration,
+                    1
+                );
+
+                const eased = 1 - Math.pow(1 - progress, 3);
+
+                current = Math.floor(target * eased);
+
+                counter.textContent =
+                    target === 120
+                        ? current + "K+"
+                        : target === 98
+                            ? current + "%"
+                            : current + "+";
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+
+            }
+
+            requestAnimationFrame(updateCounter);
+
+            counterObserver.unobserve(counter);
+
+        });
+
+    },
+    {
+        threshold: .6
+    }
+);
+
+counters.forEach(counter =>
+    counterObserver.observe(counter)
+);
+
+
+/* =========================
+   STORY DRAG SCROLL
+========================= */
+
+const storyTrack = document.getElementById("storyTrack");
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+storyTrack.addEventListener("mousedown", e => {
+
+    isDown = true;
+    storyTrack.style.cursor = "grabbing";
+
+    startX = e.pageX - storyTrack.offsetLeft;
+    scrollLeft = storyTrack.scrollLeft;
+
+});
+
+storyTrack.addEventListener("mouseleave", () => {
+
+    isDown = false;
+    storyTrack.style.cursor = "grab";
+
+});
+
+storyTrack.addEventListener("mouseup", () => {
+
+    isDown = false;
+    storyTrack.style.cursor = "grab";
+
+});
+
+storyTrack.addEventListener("mousemove", e => {
+
+    if (!isDown) return;
+
+    e.preventDefault();
+
+    const x = e.pageX - storyTrack.offsetLeft;
+    const walk = (x - startX) * 1.5;
+
+    storyTrack.scrollLeft = scrollLeft - walk;
+
+});
+
+
+/* =========================
+   GALLERY LIGHTBOX
+========================= */
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxClose = document.getElementById("lightboxClose");
+
+document.querySelectorAll(".gallery-item").forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        const image = item.querySelector("img");
+
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+
+        lightbox.classList.add("active");
+
+        document.body.classList.add("menu-open");
+
+    });
+
+});
+
+function closeLightbox() {
+
+    lightbox.classList.remove("active");
+    document.body.classList.remove("menu-open");
+
+}
+
+lightboxClose.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", e => {
+
+    if (e.target === lightbox) {
+        closeLightbox();
+    }
+
+});
+
+document.addEventListener("keydown", e => {
+
+    if (e.key === "Escape") {
+        closeLightbox();
+    }
+
+});
+
+
+/* =========================
+   NEWSLETTER
+========================= */
+
+const newsletterBtn =
+    document.getElementById("newsletterBtn");
+
+const newsletterEmail =
+    document.getElementById("newsletterEmail");
+
+newsletterBtn.addEventListener("click", () => {
+
+    const email = newsletterEmail.value.trim();
+
+    if (!email || !email.includes("@")) {
+
+        newsletterEmail.focus();
+        newsletterEmail.placeholder = "Enter a valid email";
+
+        return;
+
+    }
+
+    newsletterEmail.value = "";
+    newsletterEmail.placeholder = "You're on the list";
+
+});
+
+
+/* =========================
+   SMOOTH PARALLAX HERO
+========================= */
+
+const hero = document.querySelector(".hero");
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+
+    window.addEventListener("scroll", () => {
+
+        const scroll = window.scrollY;
+
+        if (scroll < window.innerHeight) {
+
+            hero.style.backgroundPosition =
+                `center calc(50% + ${scroll * 0.12}px)`;
+
+        }
+
+    }, { passive: true });
+
+}
+
+
+/* =========================
+   NAV ACTIVE STATE
+========================= */
+
+const sections = document.querySelectorAll("main section[id]");
+const navLinks = document.querySelectorAll(".nav a");
+
+const sectionObserver = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                navLinks.forEach(link => {
+
+                    link.classList.remove("active");
+
+                    if (
+                        link.getAttribute("href") ===
+                        "#" + entry.target.id
+                    ) {
+                        link.classList.add("active");
+                    }
+
+                });
+
+            }
+
+        });
+
+    },
+    {
+        threshold: .35
+    }
+);
+
+sections.forEach(section =>
+    sectionObserver.observe(section)
+);
+
+
+/* =========================
+   BUTTON MAGNETIC MICRO EFFECT
+========================= */
+
+if (
+    window.innerWidth > 900 &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
+
+    document.querySelectorAll(".btn-primary").forEach(button => {
+
+        button.addEventListener("mousemove", e => {
+
+            const rect = button.getBoundingClientRect();
+
+            const x =
+                (e.clientX - rect.left - rect.width / 2) * .12;
+
+            const y =
+                (e.clientY - rect.top - rect.height / 2) * .12;
+
+            button.style.transform =
+                `translate(${x}px, ${y}px)`;
+
+        });
+
+        button.addEventListener("mouseleave", () => {
+
+            button.style.transform = "";
+
+        });
+
+    });
+
+}
+
+
+/* =========================
+   PREVENT EMPTY SOCIAL LINKS
+========================= */
+
+document.querySelectorAll(".social").forEach(link => {
+
+    link.addEventListener("click", e => {
+
+        if (link.getAttribute("href") === "#") {
+            e.preventDefault();
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
