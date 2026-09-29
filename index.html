@@ -45,6 +45,8 @@ body {
     background: var(--ivory);
     color: var(--dark-text);
     font-family: "DM Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
@@ -208,7 +210,7 @@ a {
 .nav a {
     position: relative;
     color: rgba(245, 241, 232, 0.78);
-    font-size: 12.5px;
+    font-size: 13.5px;
     font-weight: 500;
     padding: 8px 16px;
     border-radius: 100px;
@@ -295,7 +297,7 @@ a {
     color: var(--ink);
     padding: 11px 22px;
     border-radius: 100px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.04em;
     display: inline-flex;
@@ -427,13 +429,13 @@ a {
     background: rgba(255, 255, 255, 0.02);
     color: var(--ivory);
     font-family: "Playfair Display", serif;
-    font-size: clamp(24px, 5vw, 36px);
+    font-size: clamp(22px, 4.5vw, 32px);
     transition: all 0.3s ease;
 }
 
 .mobile-nav-num {
     font-family: "DM Sans", sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     color: var(--gold);
     letter-spacing: 0.1em;
@@ -454,7 +456,19 @@ a {
     padding-left: 26px;
 }
 
-.mobile-nav a:hover svg {
+.mobile-nav a.active {
+    background: rgba(213, 183, 122, 0.18);
+    border-color: var(--gold);
+    color: var(--gold);
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(213, 183, 122, 0.2);
+}
+
+.mobile-nav a.active .mobile-nav-num {
+    color: var(--gold);
+}
+
+.mobile-nav a.active svg {
     opacity: 1;
     transform: translate(3px, -3px);
 }
@@ -462,14 +476,14 @@ a {
 .mobile-menu-bottom {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding-top: 25px;
+    gap: 16px;
+    padding-top: 20px;
     border-top: 1px solid rgba(245, 241, 232, 0.12);
 }
 
 .mobile-contact-info {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
@@ -481,8 +495,8 @@ a {
     border-radius: 100px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(245, 241, 232, 0.1);
-    font-size: 11px;
-    color: rgba(245, 241, 232, 0.75);
+    font-size: 12px;
+    color: rgba(245, 241, 232, 0.85);
 }
 
 .mobile-contact-pill svg {
@@ -494,35 +508,56 @@ a {
 .mobile-actions-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
 }
 
 .theme-toggle-btn {
     flex: 1;
+    min-width: 0;
     height: 48px;
+    padding: 0 10px;
     border-radius: 100px;
-    border: 1px solid rgba(245, 241, 232, 0.2);
-    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(213, 183, 122, 0.3);
+    background: rgba(255, 255, 255, 0.05);
     color: var(--ivory);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    font-size: 12px;
+    gap: 6px;
+    font-size: 11.5px;
     font-weight: 600;
+    white-space: nowrap;
+    text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.theme-toggle-btn:hover {
-    border-color: var(--gold);
-    color: var(--gold);
+.theme-toggle-btn span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .theme-toggle-btn svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
     color: var(--gold);
+}
+
+.mobile-book {
+    flex: 1;
+    min-width: 0;
+    height: 48px;
+    padding: 0 12px;
+    font-size: 11.5px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 
 /* =========================
@@ -564,7 +599,7 @@ a {
     gap: 10px;
     text-transform: uppercase;
     letter-spacing: .2em;
-    font-size: 10px;
+    font-size: 11.5px;
     font-weight: 700;
     color: var(--gold);
     margin-bottom: 22px;
@@ -587,10 +622,10 @@ a {
 }
 
 .hero-description {
-    max-width: 570px;
+    max-width: 600px;
     margin-top: 28px;
-    color: rgba(245,241,232,.78);
-    font-size: 16px;
+    color: rgba(245,241,232,.85);
+    font-size: 17.5px;
     line-height: 1.8;
 }
 
@@ -602,14 +637,14 @@ a {
 }
 
 .btn {
-    min-height: 52px;
-    padding: 0 22px;
+    min-height: 54px;
+    padding: 0 24px;
     border-radius: 100px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-size: 12px;
+    font-size: 13.5px;
     font-weight: 700;
     border: 1px solid transparent;
     transition: var(--transition);
@@ -723,7 +758,7 @@ section {
 .section-label {
     color: var(--gold);
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: 11.5px;
     font-weight: 700;
     letter-spacing: .2em;
     margin-bottom: 14px;
@@ -738,14 +773,14 @@ section {
 }
 
 .section-description {
-    max-width: 390px;
-    color: rgba(19,22,23,.62);
-    font-size: 14px;
+    max-width: 440px;
+    color: rgba(19,22,23,.78);
+    font-size: 15.5px;
     line-height: 1.8;
 }
 
 .dark-section .section-description {
-    color: rgba(245,241,232,.62);
+    color: rgba(245,241,232,.78);
 }
 
 /* =========================
@@ -764,12 +799,13 @@ section {
 }
 
 .filter-btn {
-    border: 1px solid rgba(19,22,23,.15);
+    border: 1px solid rgba(19,22,23,.18);
     background: transparent;
     color: var(--dark-text);
-    padding: 10px 17px;
+    padding: 11px 20px;
     border-radius: 100px;
-    font-size: 11px;
+    font-size: 12.5px;
+    font-weight: 600;
     transition: .3s ease;
 }
 
@@ -863,7 +899,7 @@ section {
 
 .event-category {
     color: var(--gold);
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: .18em;
     text-transform: uppercase;
     font-weight: 700;
@@ -876,10 +912,10 @@ section {
 }
 
 .event-content p {
-    color: rgba(245,241,232,.7);
-    font-size: 12px;
-    line-height: 1.6;
-    max-width: 400px;
+    color: rgba(245,241,232,.85);
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 420px;
 }
 
 .card-link {
@@ -888,7 +924,7 @@ section {
     gap: 8px;
     margin-top: 16px;
     color: var(--ivory);
-    font-size: 11px;
+    font-size: 12.5px;
     font-weight: 700;
     opacity: 0;
     transform: translateY(12px);
@@ -977,16 +1013,16 @@ section {
     position: relative;
     z-index: 2;
     font-family: "Playfair Display", serif;
-    font-size: 25px;
-    margin-top: 60px;
+    font-size: 26px;
+    margin-top: 50px;
 }
 
 .service-card p {
     position: relative;
     z-index: 2;
     margin-top: 10px;
-    color: rgba(245,241,232,.6);
-    font-size: 12px;
+    color: rgba(245,241,232,.75);
+    font-size: 14px;
     line-height: 1.7;
 }
 
@@ -1511,51 +1547,161 @@ section {
 }
 
 /* =========================
-   CTA
+   CTA & BOOKING HUB
 ========================= */
 
 .final-cta {
-    min-height: 650px;
-    display: flex;
-    align-items: center;
-    color: var(--ivory);
+    padding: 120px 0;
     background:
-        linear-gradient(90deg, rgba(19,22,23,.9), rgba(19,22,23,.3)),
+        linear-gradient(135deg, rgba(19,22,23,.96), rgba(19,22,23,.88)),
         url("https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=2200&q=90")
         center/cover;
     position: relative;
     overflow: hidden;
+    color: var(--ivory);
 }
 
-.final-cta::before {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    right: -250px;
-    top: -200px;
-    border: 1px solid rgba(213,183,122,.2);
-    border-radius: 50%;
-}
-
-.cta-content {
-    position: relative;
-    max-width: 780px;
+.booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: center;
 }
 
 .cta-content h2 {
     font-family: "Playfair Display", serif;
-    font-size: clamp(55px, 7vw, 100px);
-    line-height: .95;
+    font-size: clamp(45px, 6vw, 75px);
+    line-height: 1.05;
     font-weight: 500;
-    letter-spacing: -.05em;
+    letter-spacing: -.04em;
 }
 
 .cta-content p {
-    max-width: 510px;
-    margin-top: 25px;
-    color: rgba(245,241,232,.7);
+    max-width: 520px;
+    margin-top: 22px;
+    color: rgba(245,241,232,.82);
+    font-size: 16px;
     line-height: 1.8;
+}
+
+.contact-highlights {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.highlight-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 18px 22px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(245, 241, 232, 0.12);
+}
+
+.highlight-item svg {
+    width: 24px;
+    height: 24px;
+    color: var(--gold);
+    flex: 0 0 24px;
+    margin-top: 2px;
+}
+
+.highlight-item h4 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--ivory);
+}
+
+.highlight-item p {
+    font-size: 13.5px;
+    color: rgba(245, 241, 232, 0.7);
+    margin-top: 4px;
+}
+
+.booking-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(213, 183, 122, 0.35);
+    border-radius: 28px;
+    padding: 38px 34px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+}
+
+.booking-header h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    color: var(--ivory);
+}
+
+.booking-header p {
+    font-size: 14px;
+    color: rgba(245, 241, 232, 0.7);
+    margin-top: 6px;
+    margin-bottom: 24px;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    background: rgba(19, 22, 23, 0.85);
+    border: 1px solid rgba(245, 241, 232, 0.18);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: var(--ivory);
+    font-size: 14.5px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group select option {
+    background: var(--ink);
+    color: var(--ivory);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 15px rgba(213, 183, 122, 0.25);
+    background: rgba(19, 22, 23, 0.95);
+}
+
+.booking-submit-btn {
+    width: 100%;
+    height: 52px;
+    margin-top: 8px;
+    font-size: 14px;
 }
 
 /* =========================
@@ -1619,8 +1765,8 @@ section {
     display: flex;
     gap: 12px;
     align-items: center;
-    color: rgba(245, 241, 232, 0.75);
-    font-size: 13px;
+    color: rgba(245, 241, 232, 0.85);
+    font-size: 14px;
 }
 
 .contact-item svg,
@@ -1650,7 +1796,7 @@ section {
     background: transparent;
     color: var(--ivory);
     padding: 13px 0;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .newsletter button {
@@ -1688,13 +1834,13 @@ section {
 }
 
 .social {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    border: 1px solid rgba(245, 241, 232, 0.2);
-    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(213, 183, 122, 0.35);
+    background: rgba(255, 255, 255, 0.06);
     color: var(--gold);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
@@ -1718,7 +1864,7 @@ section {
     background: var(--gold);
     border-color: var(--gold);
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(213, 183, 122, 0.3);
+    box-shadow: 0 8px 20px rgba(213, 183, 122, 0.4);
 }
 
 .social:hover svg,
@@ -1952,10 +2098,13 @@ body.dark-mode .process-step p {
         min-height: 420px;
     }
 
-    .featured-item,
-    .featured-item.reverse {
+    .booking-grid {
         grid-template-columns: 1fr;
-        min-height: auto;
+        gap: 40px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
     }
 
     .featured-image {
@@ -3171,32 +3320,134 @@ body.dark-mode .process-step p {
 
 
 <!-- =========================
-     FINAL CTA
+     FINAL CTA / BOOKING SECTION
 ========================= -->
 
 <section class="final-cta" id="contact">
 
 <div class="container">
 
-    <div class="cta-content reveal">
+    <div class="booking-grid">
 
-        <div class="eyebrow">
-            Let's Create Something
+        <div class="cta-content reveal">
+
+            <div class="eyebrow">
+                Reserve Your Experience
+            </div>
+
+            <h2>
+                Your Next Great Event Starts Here.
+            </h2>
+
+            <p>
+                Tell us about your vision. Our master event planners, designers,
+                and production managers are ready to turn your concept into an unforgettable memory.
+            </p>
+
+            <div class="contact-highlights">
+
+                <div class="highlight-item">
+                    <i data-lucide="shield-check"></i>
+                    <div>
+                        <h4>Full Production Guarantee</h4>
+                        <p>End-to-end planning, staffing, catering & tech orchestration.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-item">
+                    <i data-lucide="clock"></i>
+                    <div>
+                        <h4>2-Hour Concierge Response</h4>
+                        <p>Direct priority consult with our senior creative director.</p>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
-        <h2>
-            Your Next Great Event Starts Here.
-        </h2>
+        <div class="booking-card reveal">
 
-        <p>
-            Tell us what you're imagining. We'll turn the idea into
-            an experience your guests will remember.
-        </p>
+            <div class="booking-header">
+                <h3>Event Booking & Inquiry</h3>
+                <p>Select your event details below to reserve consultation</p>
+            </div>
 
-        <a href="mailto:hello@velora.events" class="btn btn-primary" style="margin-top:32px;">
-            Plan Your Event
-            <i data-lucide="arrow-up-right"></i>
-        </a>
+            <form class="booking-form" id="bookingForm">
+
+                <div class="form-group">
+                    <label for="bookingName">Your Name / Organization *</label>
+                    <input type="text" id="bookingName" required placeholder="e.g. Eleanor Vance">
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="bookingEmail">Email Address *</label>
+                        <input type="email" id="bookingEmail" required placeholder="name@company.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookingPhone">Phone Number</label>
+                        <input type="tel" id="bookingPhone" placeholder="+1 (555) 000-0000">
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="bookingCategory">Event Type *</label>
+                        <select id="bookingCategory" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="Wedding">Wedding Celebration</option>
+                            <option value="Corporate">Corporate Summit / Gala</option>
+                            <option value="Concert">Concert / Live Production</option>
+                            <option value="Conference">International Conference</option>
+                            <option value="Exhibition">Art & Brand Exhibition</option>
+                            <option value="Private">Private Luxury Gathering</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookingGuests">Estimated Guests *</label>
+                        <select id="bookingGuests" required>
+                            <option value="50-150">50 – 150 Guests</option>
+                            <option value="150-300">150 – 300 Guests</option>
+                            <option value="300-800">300 – 800 Guests</option>
+                            <option value="800+">800+ Guests</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="bookingDate">Preferred Date</label>
+                        <input type="date" id="bookingDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookingVenue">Target Location / City</label>
+                        <input type="text" id="bookingVenue" placeholder="e.g. Lake Como, London, NY">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="bookingNotes">Event Vision & Special Requirements</label>
+                    <textarea id="bookingNotes" rows="3" placeholder="Tell us about the atmosphere, styling, or budget vision..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary booking-submit-btn">
+                    <span>Submit Booking Request</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
 
@@ -3242,19 +3493,19 @@ body.dark-mode .process-step p {
             <div class="socials">
 
                 <a href="#" class="social" aria-label="Instagram">
-                    <i data-lucide="instagram"></i>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                 </a>
 
                 <a href="#" class="social" aria-label="LinkedIn">
-                    <i data-lucide="linkedin"></i>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>
 
                 <a href="#" class="social" aria-label="Facebook">
-                    <i data-lucide="facebook"></i>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                 </a>
 
-                <a href="#" class="social" aria-label="Twitter">
-                    <i data-lucide="twitter"></i>
+                <a href="#" class="social" aria-label="Twitter / X">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
                 </a>
 
             </div>
@@ -3799,39 +4050,63 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
 
 /* =========================
-   NAV ACTIVE STATE
+   BOOKING FORM INTERACTION
 ========================= */
 
-const sections = document.querySelectorAll("main section[id]");
+const bookingForm = document.getElementById("bookingForm");
+if (bookingForm) {
+    bookingForm.addEventListener("submit", e => {
+        e.preventDefault();
+        const nameInput = document.getElementById("bookingName");
+        const categoryInput = document.getElementById("bookingCategory");
+        const name = nameInput ? nameInput.value : "Guest";
+        const category = categoryInput ? categoryInput.value : "Event";
+
+        const submitBtn = bookingForm.querySelector(".booking-submit-btn");
+        const originalText = submitBtn.innerHTML;
+
+        submitBtn.innerHTML = '<span>Processing Request...</span>';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            alert(`Thank you, ${name}! Your booking request for ${category} has been received. Our concierge will contact you within 2 hours.`);
+            bookingForm.reset();
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, 1000);
+    });
+}
+
+
+/* =========================
+   NAV ACTIVE STATE (DESKTOP & MOBILE)
+========================= */
+
+const sections = document.querySelectorAll("main section[id], section#contact");
 const navLinks = document.querySelectorAll(".nav a");
+const mobileNavLinks = document.querySelectorAll(".mobile-nav a");
+
+function setActiveNavLink(targetId) {
+    navLinks.forEach(link => {
+        const isMatch = link.getAttribute("href") === "#" + targetId;
+        link.classList.toggle("active", isMatch);
+    });
+    mobileNavLinks.forEach(link => {
+        const isMatch = link.getAttribute("href") === "#" + targetId;
+        link.classList.toggle("active", isMatch);
+    });
+}
 
 const sectionObserver = new IntersectionObserver(
     entries => {
-
         entries.forEach(entry => {
-
             if (entry.isIntersecting) {
-
-                navLinks.forEach(link => {
-
-                    link.classList.remove("active");
-
-                    if (
-                        link.getAttribute("href") ===
-                        "#" + entry.target.id
-                    ) {
-                        link.classList.add("active");
-                    }
-
-                });
-
+                setActiveNavLink(entry.target.id);
             }
-
         });
-
     },
     {
-        threshold: .35
+        threshold: 0.25
     }
 );
 
